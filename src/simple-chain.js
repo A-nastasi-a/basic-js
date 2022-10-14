@@ -7,31 +7,25 @@ const { NotImplementedError } = require('../extensions/index.js');
 const chainMaker = {
     chain: [],
     getLength() {
-        // return this.chain.length;
-        throw new NotImplementedError('Not implemented');
+        return this.chain.length;
     },
-    addLink(value = 0) {
-        // if (value != 0) {
-        //     this.chain.push(` (${value}) `);
-        // } else {
-        //     this.chain.push(`()`);
-        // }
-        // this.chain.push(`~~`);
-        // return this;
-        throw new NotImplementedError('Not implemented');
+    addLink(value) {
+        if (typeof value !== "undefined") {
+            value = ' ' + value + ' ';
+            this.chain.push(`(${value})`);
+        } else {
+            this.chain.push(`()`);
+        }
+
+        return this;
     },
     removeLink(position) {
-        throw new NotImplementedError('Not implemented');
-        // if (typeof(position) != 'number' || Math.round(position) != position) {
-        //     throw new Error("You can't remove incorrect link!");
-        // } else {
-        //     // for (let i = 0; i < this.chain; i++) {
-        //     //     if (this.chain.indexOf(String(position)) >= 0) {
-        //     //         this.chain.splice(i, 1);
-        //     //     }
-        //     // }
-        //     this.chain.splice(position - 1, 1);
-        // }
+        if (typeof(position) === 'number' && position % 1 === 0 && position > 0 && position < this.chain.length) {
+            this.chain.splice(position - 1, 1);
+        } else {
+            this.chain = [];
+            throw new Error("You can't remove incorrect link!");
+        }
         // try {
         //     this.achin[position];
 
@@ -43,23 +37,22 @@ const chainMaker = {
         // }
 
 
-        // return this;
+        return this;
         // throw new NotImplementedError('Not implemented');
         // remove line with error and write your code here
     },
     reverseChain() {
-        // this.chain = this.chain.reverse();
-        // return this;
-        throw new NotImplementedError('Not implemented');
+        this.chain.reverse();
+        return this;
 
     },
     finishChain() {
-        throw new NotImplementedError('Not implemented');
-        // final = '';
-        // for (let i of this.chain) {
-        //     final += i.trim();
-        // }
-        // return final;
+        final = '';
+        for (let i of this.chain) {
+            final += "~~" + i.trim();
+        }
+        this.chain = [];
+        return final.slice(2, final.length);
 
     }
 };
