@@ -26,17 +26,6 @@ const chainMaker = {
             this.chain = [];
             throw new Error("You can't remove incorrect link!");
         }
-        // try {
-        //     this.achin[position];
-
-        // } catch {
-        //     throw new Error("You can't remove incorrect link!");
-        // }
-        // if (typeof position !== 'number' || Math.round(position) !== position) {
-        //     throw new Error("You can't remove incorrect link!");
-        // }
-
-
         return this;
         // throw new NotImplementedError('Not implemented');
         // remove line with error and write your code here
